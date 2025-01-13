@@ -1,0 +1,22 @@
+﻿@model BlogWeb.Models.Account.LoginModel
+@{
+    ViewData["Login"] = "Đăng nhập";
+}
+<body>
+    <h2>@ViewData["Login"]</h2>
+    <div>
+        <form asp-action="Login" asp-controller="Account" method="post">   
+            <div class="form-group">
+                <label for="UserName">Tên</label>
+                <input type="text" class="form-control" asp-for="UserName"/>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Password">Mật khẩu</label>
+                <input type="password" class="form-control" asp-for="Password"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+        </form>
+    </div>
+</body>

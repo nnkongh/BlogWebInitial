@@ -1,0 +1,109 @@
+﻿@model BlogWeb.Models.Pagination.Pager<BlogWeb.Models.ViewModel.PostViewModel>
+
+@{
+    ViewData["Title"] = "Danh sách bài đăng";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css">
+</head>
+<body>
+    <h2>@ViewData["Title"]</h2>
+
+    <!-- Hộp tìm kiếm -->
+    <div class="search-box">
+        <form method="get">
+            <label for="SearchString">Tag:</label>
+            <input type="text" name="searchString"  class="form-control" placeholder="Tìm kiếm tiêu đề..." />
+            <button type="submit" class="btn btn-primary">Lọc</button>
+        </form>
+    </div>
+
+    <!-- Kiểm tra xem có bài đăng không -->
+    @if (Model.Items.Any())
+    {
+        <!-- Hiển thị danh sách bài đăng -->
+        @foreach (var post in Model.Items)
+        {
+            <div class="post-box">
+                <h3 class="post-title">@post.Title</h3>
+                <p class="post-content">@post.Content</p>
+                <div class="post-info">
+                    <span>Tag: @post.Tag</span>
+                    <span>Ngày đăng: @post.CreateAt.ToString("dd/MM/yyyy")</span>
+                </div>
+                <div class="post-actions">
+                    <a href="@Url.Action("UpdatePost", "Post", new { id = post.Id })" class="btn btn-primary">Cập nhật</a>
+                    <form asp-action="DeletePost" asp-controller="Post" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@post.Id" />
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </form>
+                </div>
+            </div>
+        }
+        <div class="pagination">
+            <nav>
+                <ul class="pagination">
+                    @if (Model.HasPreviousPage)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-action="Index" asp-route-pageIndex="@(Model.PageIndex - 1)" asp-route-searchString="@ViewData["SearchString"]" asp-route-Tag="@ViewData["Tag"]">
+                                Previous
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item disabled">
+                            <span class="page-link">Previous</span>
+                        </li>
+                    }
+
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-pageIndex="@i" asp-route-searchString="@ViewData["SearchString"]" asp-route-Tag="@ViewData["Tag"]">
+                                @i
+                            </a>
+                        </li>
+                    }
+
+                    @if (Model.HasNextPage)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-action="Index" asp-route-pageIndex="@(Model.PageIndex + 1)" asp-route-searchString="@ViewData["SearchString"]" asp-route-Tag="@ViewData["Tag"]">
+                                Next
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item disabled">
+                            <span class="page-link">Next</span>
+                        </li>
+                    }
+
+                    <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-pageIndex="@Model.TotalPages" asp-route-searchString="@ViewData["SearchString"]" asp-route-Tag="@ViewData["Tag"]">
+                            Last
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+    }
+    else
+    {
+        <p>Không có bài đăng nào phù hợp.</p>
+    }
+    
+   
+</body>
+</html>
