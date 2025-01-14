@@ -147,3 +147,6 @@ C:\Users\HELLO\source\repos\BlogWeb\BlogWeb\obj\Debug\net8.0\refint\BlogWeb.dll
 C:\Users\HELLO\source\repos\BlogWeb\BlogWeb\obj\Debug\net8.0\BlogWeb.pdb
 C:\Users\HELLO\source\repos\BlogWeb\BlogWeb\obj\Debug\net8.0\BlogWeb.genruntimeconfig.cache
 C:\Users\HELLO\source\repos\BlogWeb\BlogWeb\obj\Debug\net8.0\ref\BlogWeb.dll
+C:\Users\HELLO\source\repos\BlogWeb\BlogWeb\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\HELLO\source\repos\BlogWeb\BlogWeb\bin\Debug\net8.0\SendGrid.dll
+C:\Users\HELLO\source\repos\BlogWeb\BlogWeb\bin\Debug\net8.0\StarkbankEcdsa.dll

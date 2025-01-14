@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace BlogWeb.Controllers
 {
-
+    [Authorize]
     public class PostController : Controller
     {
         private readonly IPostRepository _postRepo;
@@ -57,7 +57,6 @@ namespace BlogWeb.Controllers
             return RedirectToAction("Index","Home");
         }
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> DeletePost(int id)
         {
             if (!ModelState.IsValid)

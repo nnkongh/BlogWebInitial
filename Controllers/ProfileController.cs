@@ -1,37 +1,39 @@
-﻿using BlogWeb.Models;
+﻿using BlogWeb.Database;
 using BlogWeb.Models.Authentication;
-using BlogWeb.Repository.PostRepo;
+using BlogWeb.Models.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace BlogWeb.Controllers
 {
-    //[Authorize]
-    //public class ProfileController : Controller
-    //{
-    //    private readonly UserManager<User> _user;
-    //    private readonly RoleManager<User> _role;
+    [Authorize]
+    public class ProfileController : Controller
+    { 
+        private readonly UserManager<User> _userManager;
 
-    //    public ProfileController(UserManager<User> user, RoleManager<User> role) {
-    //        _user = user;
-    //        _role = role;
-    //    }
-    //    public async Task<IActionResult> Index()
-    //    {
-    //        var user = await _user.GetUserAsync(User);
-    //        if (user == null)
-    //        {
-    //            return NotFound();
-    //        }
-    //        var model = new UserProfile
-    //        {
-    //            UserName = user.UserName,
-    //            Email = user.Email,
-                
-    //        };
-    //        return View(model);
-    //    }
-    //}
+        public ProfileController(UserManager<User> userManager)
+        {
+            _userManager = userManager;
+        }
+        [HttpGet]
+        public async Task<IActionResult> Profile()
+        {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            if (userId == null) {
+                return RedirectToAction("Login","Account");
+            }
+            var user = await _userManager.FindByIdAsync(userId);
+            var model = new UserViewModel
+            {
+
+                UserName = user.UserName,
+                Email = user.Email,
+                Role = user.Role,
+            };
+            return View(model);
+        }
+    }
 }

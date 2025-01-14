@@ -18,14 +18,14 @@ namespace BlogWeb.Controllers
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<User> _signIn;
-        private readonly ILogger<AccountController> _logger;
+      
 
-        public AccountController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signIn, ILogger<AccountController> logger)
+        public AccountController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signIn)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signIn = signIn;
-            _logger = logger;
+
         }
         [HttpGet]
         public IActionResult Login()
@@ -58,7 +58,8 @@ namespace BlogWeb.Controllers
 
                 var claims = new List<Claim>()
                 {
-                    new(ClaimTypes.Sid,user.UserName),
+                    new(ClaimTypes.Sid,user.Id),
+                    new(ClaimTypes.NameIdentifier,user.Id),
                     new(ClaimTypes.Name,user.UserName),
                     new(ClaimTypes.Email,user.Email),
                 };
@@ -68,7 +69,7 @@ namespace BlogWeb.Controllers
                 }
                 var principal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                return RedirectToAction("Index", "Profile");
+                return RedirectToAction("Index","Home" );
 
             }
             catch (Exception ex)

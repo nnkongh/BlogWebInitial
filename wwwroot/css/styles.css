@@ -1,6 +1,7 @@
 ﻿/* Nền và màu sắc */
+/* Nền và màu sắc */
 body {
-    background-color: #f8f9fa; /* Màu nền sáng hơn */
+    background-color: #f8f9fa;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -8,24 +9,27 @@ body {
 
 h2 {
     text-align: center;
-    color: #343a40; /* Màu tối cho tiêu đề */
+    color: #343a40;
     margin: 20px 0;
 }
 
-/* Hộp tìm kiếm */
+/* Khu vực tìm kiếm và lọc */
 .search-box {
-    max-width: 600px;
+    max-width: 800px; /* Tăng độ rộng tối đa */
     margin: 0 auto 20px auto;
     padding: 10px;
     text-align: center;
+    display: flex; /* Sử dụng flexbox */
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa các phần tử */
 }
 
     .search-box input {
-        width: calc(70% - 10px);
+        width: 400px; /* Độ rộng cố định cho input */
         padding: 8px;
         border: 1px solid #ced4da;
         border-radius: 4px;
-        margin-right: 5px;
     }
 
     .search-box button {
@@ -35,6 +39,7 @@ h2 {
         border: none;
         border-radius: 4px;
         cursor: pointer;
+        min-width: 80px; /* Độ rộng tối thiểu cho nút */
     }
 
         .search-box button:hover {
@@ -43,12 +48,12 @@ h2 {
 
 /* Hộp bài đăng */
 .post-box {
-    max-width: 500px; /* Thu hẹp chiều ngang */
-    margin: 10px auto; /* Căn giữa và khoảng cách giữa các bài */
+    max-width: 1000px; /* Tăng độ rộng tối đa */
+    margin: 20px auto; /* Tăng khoảng cách giữa các bài */
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
+    padding: 30px; /* Tăng padding */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -58,24 +63,25 @@ h2 {
         box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
     }
 
-/* Tiêu đề bài đăng */
+/* Các phần CSS khác giữ nguyên */
 .post-title {
-    font-size: 22px;
+    font-size: 24px; /* Tăng kích thước chữ */
     font-weight: bold;
     color: #343a40;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     text-align: center;
 }
 
-/* Nội dung bài đăng */
 .post-content {
     font-size: 16px;
     color: #6c757d;
-    line-height: 1.6;
-    margin-bottom: 15px;
+    line-height: 1.8; /* Tăng line-height */
+    margin-bottom: 20px;
     text-align: justify;
+    padding: 0 15px; /* Thêm padding hai bên */
 }
 
+/* Giữ nguyên các phần CSS còn lại */
 /* Thông tin Tag và Ngày đăng */
 .post-info {
     font-size: 14px;

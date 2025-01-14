@@ -44,7 +44,7 @@ namespace BlogWeb
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opt =>
                 {
                     opt.LoginPath = "/Account/Login";
-                    opt.AccessDeniedPath = "/Home/Privacy";
+                    opt.AccessDeniedPath = "/Account/Login";
                     opt.LogoutPath = "/Account/Logout";
                     opt.Cookie.Name = "BlogWeb.Cookie";
                   
