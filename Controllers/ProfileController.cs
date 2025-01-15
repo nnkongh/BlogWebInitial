@@ -35,5 +35,25 @@ namespace BlogWeb.Controllers
             };
             return View(model);
         }
+        [HttpPost]
+        public async Task<IActionResult> Profile(UserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var userId = _userManager.GetUserId(HttpContext.User);
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null) { 
+                return NotFound();
+            }
+            user.Email = model.Email;
+            var updateUser = await _userManager.UpdateAsync(user);
+            if (updateUser.Succeeded) {
+                ViewBag.Message = "Profile updated successfully";
+                return View(model);
+            }
+            return View(model);
+        }
     }
 }

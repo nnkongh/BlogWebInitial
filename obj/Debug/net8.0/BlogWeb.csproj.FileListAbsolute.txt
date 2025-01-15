@@ -150,3 +150,4 @@ C:\Users\HELLO\source\repos\BlogWeb\BlogWeb\obj\Debug\net8.0\ref\BlogWeb.dll
 C:\Users\HELLO\source\repos\BlogWeb\BlogWeb\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\HELLO\source\repos\BlogWeb\BlogWeb\bin\Debug\net8.0\SendGrid.dll
 C:\Users\HELLO\source\repos\BlogWeb\BlogWeb\bin\Debug\net8.0\StarkbankEcdsa.dll
+C:\Users\HELLO\source\repos\BlogWeb\BlogWeb\obj\Debug\net8.0\BlogWeb.sourcelink.json
